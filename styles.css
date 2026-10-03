@@ -163,6 +163,14 @@ h2{
   border-radius:14px;display:block;
 }
 
+/* iPad captures, landscape, shown whole rather than cropped: the split
+   layout is the point of them. Two across on desktop, stacked below 900. */
+.shots-wide{display:grid;gap:20px;grid-template-columns:repeat(2,1fr);margin-top:20px}
+.shots-wide img{
+  width:100%;aspect-ratio:2752/2064;object-fit:cover;
+  border-radius:14px;display:block;
+}
+
 /* --------------------------------------------------------------- refusals */
 .refusals{background:var(--ink);color:var(--cream);border-radius:24px;
   padding:clamp(34px,6vw,64px)}
@@ -252,6 +260,7 @@ footer{margin-top:clamp(80px,11vw,130px);padding:44px 0 60px;
   .split{grid-template-columns:1fr}
   .part{min-height:150px}
   .shots{grid-template-columns:repeat(2,1fr)}
+  .shots-wide{grid-template-columns:1fr}
   .refusal-list{grid-template-columns:1fr}
 }
 @media (max-width:520px){
