@@ -9,20 +9,25 @@ Static HTML and CSS, deployed via Cloudflare Pages with GitHub auto-deploy.
 ├── index.html         marketing page
 ├── privacy.html       privacy policy, linked from the app's About screen
 ├── support.html       support page and FAQ
+├── event/duo.html     1.1 In-App Event page (deep link target)
 ├── styles.css         shared stylesheet
+├── scripts.js         the hero's commute and the cost bar
 ├── _headers           Cloudflare Pages cache and security headers
 ├── robots.txt
 ├── sitemap.xml
-├── fonts/             Fraunces_72pt-Regular.ttf
-└── images/            screenshots
+└── images/            screenshots and the iPhone Duo image
 ```
 
-## Fonts
+## Design
 
-Fraunces, IBM Plex Mono and Inter load from Google Fonts in each page head,
-matching the other sites. Fraunces is used for the wordmark and the two
-gradient card figures only; Plex Mono carries eyebrows and data; Inter does
-everything else.
+The road at first light: the top of each page is asphalt running to signal
+teal, the app's own arc, and below it cream paper. Archivo, narrowed like
+road signage, for everything set; DM Mono for figures and labels; Fraunces
+only inside the copy of the app's home screen, where the app uses it.
+
+`scripts.js` runs the home page: the hero's copy of the app records one leg
+by itself and then lets the visitor start and stop commutes, and the cost
+bar fills fuel first, then the rest of what a car costs.
 
 ## Assets to drop in
 

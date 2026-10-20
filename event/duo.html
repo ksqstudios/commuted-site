@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Commuted 1.1</title>
 <meta name="description" content="Commuted 1.1 adds dark mode, plus native layouts for iPad and iPhone Duo.">
+<meta name="theme-color" content="#0e1620">
 <link rel="icon" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://commuted.app/event/duo">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Fraunces:opsz,wght@72,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="doc-page">
 
 <!--
   Fallback for the v1.1 In-App Event link. With Commuted installed, iOS
@@ -24,19 +25,30 @@
   correctly the instant it paints.
 -->
 
-<div class="wrap-support">
-  <a class="masthead" href="/">
-    <img src="/apple-touch-icon.png" alt="">
-    <span class="name">Commuted</span>
-  </a>
-</div>
+<div class="road">
 
-<div class="wrap-support page-head">
+  <header class="bar">
+    <div class="bar-inner">
+      <a class="mark" href="/"><img src="/apple-touch-icon.png" alt="" width="34" height="34">Commuted</a>
+      <nav aria-label="Site">
+        <a href="/support">Support</a>
+        <a class="bar-cta" href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener">Get Commuted</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="doc-head">
   <h1>Commuted 1.1</h1>
   <p class="lede">Dark mode, plus native layouts for iPad and iPhone Duo.</p>
+  </div>
+
 </div>
 
-<div class="wrap-support page-body">
+<main class="doc">
+  <figure class="duo">
+    <img src="/images/duo.png" alt="Commuted on the unfolded iPhone Duo: the week at 4 hours 54 minutes in the gradient panel, with today, this month and year to date beside it." width="1600" height="1125">
+  </figure>
+
 
   <div class="qa">
     <h2>Dark mode</h2>
@@ -49,15 +61,21 @@
   </div>
 
   <div class="buy">
-    <a class="cta" href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener">Download on the App Store</a>
+    <a class="button" href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener">Download on the App Store</a>
   </div>
 
-</div>
+</main>
 
-<div class="wrap-support foot-simple">
-  <p><a href="/">Commuted</a> is made by KSQ Studios LLC, Berwyn, Pennsylvania.</p>
-  <p><a href="/support">Support</a> &middot; <a href="/privacy">Privacy policy</a></p>
-</div>
+<footer class="foot">
+  <div class="foot-inner">
+    <nav aria-label="Footer">
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+      <a href="https://ksqstudios.com">KSQ Studios</a>
+    </nav>
+    <p>2026 KSQ Studios LLC.</p>
+  </div>
+</footer>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -11,166 +11,197 @@
 <meta property="og:description" content="Your commute costs hours before it costs dollars.">
 <meta property="og:image" content="https://commuted.app/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://commuted.app">
+<meta name="theme-color" content="#0e1620">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Fraunces:opsz,wght@72,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script defer src="/scripts.js"></script>
 </head>
 <body>
 
-<div class="wrap">
-  <a class="masthead" href="/">
-    <img src="apple-touch-icon.png" alt="">
-    <span class="name">Commuted</span>
-  </a>
-</div>
+<div class="road">
 
-<div class="wrap hero">
-  <h1>Your commute costs hours before it costs dollars.</h1>
-  <p class="lede">Tap when you leave. Tap when you arrive. Commuted keeps the record of what the trip to work actually takes from you, and puts the hours ahead of the money.</p>
-
-  <div class="specimen">
-    <div class="task">This week</div>
-    <div class="verdict">4 h 54 min</div>
-    <div class="figures">
-      <span>$455 across 7 legs</span><i>/</i><span>$14 of that in fuel</span>
+  <header class="bar">
+    <div class="bar-inner">
+      <a class="mark" href="/"><img src="/apple-touch-icon.png" alt="" width="34" height="34">Commuted</a>
+      <nav aria-label="Site">
+        <a href="/support">Support</a>
+        <a class="bar-cta" href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener">Get Commuted</a>
+      </nav>
     </div>
-  </div>
-  <p class="hint">The hours are the headline. The money sits underneath.</p>
+  </header>
 
-  <div class="buy">
-    <a class="cta" href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener">Download on the App Store</a>
-    <span class="price">$2.99 once. iPhone and iPad. iOS 27.</span>
-  </div>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">A commute recorder for iPhone and iPad</p>
+      <h1>Your commute costs hours before it costs dollars.</h1>
+      <p class="lede">
+        Tap when you leave. Tap when you arrive. Commuted keeps the record of
+        what the trip to work actually takes from you, and puts the hours
+        ahead of the money.
+      </p>
+      <p class="buy">
+        <a class="button" href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener">Download on the App Store</a>
+        <span>$2.99 once. No location permission.</span>
+      </p>
+    </div>
+
+    <!-- One leg, recorded. The route lights as the trip runs, Stop records
+         it, and the week above takes on its hours and its dollars. It plays
+         once by itself; after that the buttons are the visitor's. A minute
+         of commute passes in a fifth of a second. -->
+    <figure class="trip" id="trip">
+      <div class="route" aria-hidden="true">
+        <span class="stop-dot from"></span>
+        <span class="line"><span class="lit" id="lit"></span><span class="car" id="car"></span></span>
+        <span class="stop-dot to"></span>
+        <span class="stop-name from">Home</span>
+        <span class="stop-name to">Office</span>
+      </div>
+
+      <div class="phone">
+        <div class="week-head">
+          <p class="small">This week</p>
+          <p class="big"><span id="wk">5 h 36 min</span></p>
+          <p class="money"><span id="wk-cost">$86</span> · <span id="wk-legs">8</span> legs</p>
+          <p class="fuel"><span id="wk-fuel">$16</span> in fuel at $3.52/gal</p>
+        </div>
+        <div class="card control">
+          <p class="clock" id="clock" hidden>0:00</p>
+          <p class="since" id="since" hidden>Since 7:42 AM</p>
+          <button type="button" class="go" id="go">Start commute</button>
+          <p class="which">Home to office</p>
+        </div>
+        <div class="card today">
+          <div class="today-head"><p>Today</p><p class="serif" id="today-total">None yet</p></div>
+          <div class="legs" id="legs"></div>
+        </div>
+      </div>
+      <figcaption>An example week. Try it: start a commute, then stop it.</figcaption>
+    </figure>
+  </section>
+
 </div>
 
-<section>
-  <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2>Two taps, and nothing asked of you.</h2>
-    <p class="section-lede">Commuted requests no permissions at all. No location, no motion, no calendar. It knows how far you go because you told it once, and how long it took because you tapped.</p>
+<main>
 
-    <div class="moments">
-      <div class="moment">
+  <!-- How it works, set as a route with three stops. -->
+  <section class="how">
+    <div class="how-text">
+      <p class="eyebrow dark">How it works</p>
+      <h2>Two taps, and nothing asked of you.</h2>
+      <p class="lede-dark">
+        Commuted requests no permissions at all. No location, no motion, no
+        calendar. It knows how far you go because you told it once, and how
+        long it took because you tapped.
+      </p>
+    </div>
+    <ol class="stations">
+      <li>
         <p class="when">Once</p>
         <h3>Set the route</h3>
-        <p>A name and a one way distance. Most people have one or two. That is the only setup Commuted needs before it can record a trip.</p>
-      </div>
-      <div class="moment">
+        <p>A name and a one way distance. Most people have one or two. That is the only setup Commuted needs.</p>
+      </li>
+      <li>
         <p class="when">Leaving</p>
         <h3>Tap start</h3>
         <p>The clock is computed from the moment you tapped rather than kept alive in the background, so a force quit or a flat battery loses nothing.</p>
-      </div>
-      <div class="moment">
+      </li>
+      <li>
         <p class="when">Arriving</p>
         <h3>Tap stop</h3>
         <p>The leg is recorded and the week updates. Forget to tap and you can add it afterwards, which is the honest way to handle a mechanic built on remembering.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      </li>
+    </ol>
+  </section>
 
-<section>
-  <div class="wrap">
-    <p class="eyebrow">The number</p>
+  <!-- The number. The fuel share fills first, the part you feel at the
+       pump; then the rest of the leg's real cost fills in behind it. -->
+  <section class="number" id="number">
+    <p class="eyebrow dark">The number</p>
     <h2>Fuel is about a fifth of what a car costs.</h2>
-    <p class="section-lede">Most commute apps show you fuel and stop there, which quietly understates the trip by a factor of five. Commuted uses the IRS standard mileage rate, the all in figure that covers fuel, depreciation, insurance, maintenance and tires.</p>
-
-    <div class="split">
-      <div class="part p-fuel">
-        <div class="band">What you feel</div>
-        <div class="label">Fuel</div>
+    <p class="lede-dark">
+      Most commute apps show you fuel and stop there, which quietly
+      understates the trip by a factor of five. Commuted uses the IRS
+      standard mileage rate, the all in figure that covers fuel,
+      depreciation, insurance, maintenance and tires.
+    </p>
+    <div class="cost">
+      <div class="cost-bar">
+        <span class="part p-fuel"><b>Fuel</b><i>what you feel</i></span>
+        <span class="part p-rest"><b>Depreciation, insurance, maintenance, tires</b><i>what you pay anyway</i></span>
       </div>
-      <div class="part p-rest">
-        <div class="band">What you pay anyway</div>
-        <div class="label">Depreciation, insurance, maintenance, tires</div>
-      </div>
+      <div class="cost-scale"><span>One leg, 14.5 miles</span><span class="cost-total"><span id="cost-num">$2</span> <span id="cost-label">at the pump</span></span></div>
     </div>
-    <p class="split-note">The fuel portion is shown separately, because that is the part you actually feel at the pump. Set your own rate instead if you are outside the US or you know your own cost per mile. Your time is priced from your salary, adjustable, or left out entirely.</p>
-  </div>
-</section>
+    <p class="note">
+      Set your own rate instead if you are outside the US or you know your
+      own cost per mile. Your time is priced from your salary, adjustable, or
+      left out entirely.
+    </p>
+  </section>
 
-<section>
-  <div class="wrap">
-    <p class="eyebrow">The app</p>
+  <section class="app">
+    <p class="eyebrow dark">The app</p>
     <h2>Built for one job, and finished.</h2>
-    <p class="section-lede">In light or dark, on iPhone or iPad. On a larger screen the week gets its own panel beside the cards, so a running trip sits next to the month it belongs to.</p>
     <div class="shots">
-      <img src="images/01.png" alt="The home screen showing the week in hours">
-      <img src="images/02.png" alt="A commute running against its timer">
-      <img src="images/03.png" alt="History grouped by week and day">
-      <img src="images/04.png" alt="The mileage rate screen explaining what the IRS rate covers">
+      <figure><img src="/images/01.png" alt="Home: this week at 6 hours 11 minutes, $97 across 9 legs, with Start commute below." width="900" height="1955" loading="lazy"><figcaption>The week, in hours.</figcaption></figure>
+      <figure><img src="/images/02.png" alt="A commute running: 23 minutes 4 seconds since 9:10 PM, with Stop." width="900" height="1955" loading="lazy"><figcaption>A trip, running.</figcaption></figure>
+      <figure><img src="/images/03.png" alt="History grouped by day, each leg with its minutes and dollars." width="900" height="1955" loading="lazy"><figcaption>Every leg, by day.</figcaption></figure>
+      <figure><img src="/images/04.png" alt="The mileage rate screen explaining what the IRS standard rate covers." width="900" height="1955" loading="lazy"><figcaption>The rate, explained.</figcaption></figure>
     </div>
-    <div class="shots-wide">
-      <img src="images/ipad-01.png" alt="On iPad, a commute running in the gradient panel beside the week's cards">
-      <img src="images/ipad-02.png" alt="On iPad, History with the weeks beside the selected week's legs">
-    </div>
-  </div>
-</section>
+    <figure class="duo">
+      <img src="/images/duo.png" alt="Commuted on the unfolded iPhone Duo: the week at 4 hours 54 minutes in the gradient panel, with today, this month and year to date beside it." width="1600" height="1125" loading="lazy">
+      <figcaption>On iPad and iPhone Duo, the week gets its own panel beside the cards. New in 1.1, with a dark appearance.</figcaption>
+    </figure>
+  </section>
 
-<section>
-  <div class="wrap">
-    <div class="refusals">
+  <section class="refuse">
+    <div class="refuse-text">
       <p class="eyebrow">What it refuses to do</p>
       <h2>A record, not a program.</h2>
-      <p class="section-lede">Every tracker eventually grows a scoreboard. Commuted will not, and these exclusions are permanent.</p>
-
-      <ul class="refusal-list">
-        <li>No streaks or scores</li>
-        <li>No goals to beat</li>
-        <li>No coaching or AI insights</li>
-        <li>No suggestion that you move closer to work</li>
-        <li>No notifications nagging you</li>
-        <li>No leaderboards or comparisons</li>
-        <li>No trends telling you what you are</li>
-        <li>No subscription</li>
-      </ul>
-
-      <p class="close">What your commute costs is mostly not yours to change. Commuted states the number and leaves you alone with it.</p>
+      <p>Every tracker eventually grows a scoreboard. Commuted will not, and these exclusions are permanent.</p>
     </div>
-  </div>
-</section>
+    <ul class="signs">
+      <li>Streaks or scores</li>
+      <li>Goals to beat</li>
+      <li>Coaching or AI insights</li>
+      <li>Telling you to move closer to work</li>
+      <li>Nagging notifications</li>
+      <li>Leaderboards</li>
+      <li>Trends telling you what you are</li>
+      <li>A subscription</li>
+    </ul>
+    <p class="close">What your commute costs is mostly not yours to change. Commuted states the number and leaves you alone with it.</p>
+  </section>
 
-<section class="privacy">
-  <div class="wrap">
-    <p class="eyebrow">Privacy</p>
+  <section class="private">
     <h2>Nothing leaves your phone.</h2>
-    <p>Commuted has no accounts, no servers and no analytics, and it makes no network requests of any kind. There is no location entitlement in the app at all, so there is nothing to grant and nothing to revoke.</p>
-    <p>Your record is on your device. Export it as JSON whenever you want, and delete all of it from Settings.</p>
-  </div>
-</section>
+    <p>
+      No accounts, no servers, no analytics, and no network requests of any
+      kind. There is no location entitlement in the app at all, so there is
+      nothing to grant and nothing to revoke. Export your record as JSON
+      whenever you want, and delete all of it from Settings.
+    </p>
+    <p class="buy">
+      <a class="button" href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener">Download on the App Store</a>
+    </p>
+  </section>
 
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <p class="foot-title">Commuted</p>
-        <a href="/support">Support</a>
-        <a href="/privacy">Privacy policy</a>
-        <a href="mailto:techsupport@ksqstudios.com">techsupport@ksqstudios.com</a>
-      </div>
-      <div>
-        <p class="foot-title">Also from KSQ Studios</p>
-        <a href="https://minuted.org">Minuted, meeting cost</a>
-        <a href="https://winnowed.app">Winnowed, subscriptions</a>
-        <a href="https://eclipsedsleep.app">Eclipsed, sleep debt</a>
-      </div>
-      <div>
-        <p class="foot-title">More</p>
-        <a href="https://endured.app">Endured, focus sessions</a>
-        <a href="https://vesperine.app">Vesperine, journaling</a>
-        <a href="https://brightened.app">Brightened, daylight</a>
-      </div>
-      <div>
-        <p class="foot-title">Studio</p>
-        <a href="https://reckonry.app">Reckonry, estimates</a>
-        <a href="https://ksqstudios.com">ksqstudios.com</a>
-      </div>
-    </div>
-    <p class="colophon">KSQ Studios LLC, Berwyn, Pennsylvania. Made on a laptop, one app at a time.</p>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <nav aria-label="Footer">
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+      <a href="https://ksqstudios.com">KSQ Studios</a>
+    </nav>
+    <p>Commuted is designed, built, and supported by one person, Kurt Klein, in Berwyn, Pennsylvania, under KSQ Studios. Write to <a href="mailto:techsupport@ksqstudios.com">techsupport@ksqstudios.com</a>.</p>
+    <p>2026 KSQ Studios LLC.</p>
   </div>
 </footer>
 
